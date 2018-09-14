@@ -1,4 +1,7 @@
+import os
 import re
+
+from collections import namedtuple
 
 __author__ = 'Переверза Дмитрий Витальевич'
 
@@ -29,7 +32,6 @@ def fractionalOperations(fractionals):
     operation = result.group(2)
     secondFract = result.group(3)
 
-    from collections import namedtuple
     FractDigit = namedtuple('FractDigit', 'integer topNum downNum')
     # Парсим первое число
     result = re.search(r"(\s+?\-?\d+(?=\s|$))?((\-?\s?\d+)\/(\d+))?", firstFract)
@@ -55,7 +57,6 @@ def fractionalOperations(fractionals):
     # Вынесем целые части
     numberFirst = hideIntegerPart(numberFirst)
     numberSecond = hideIntegerPart(numberSecond)
-
 
     def getNOK(a, b):
         if a == 0 or b == 0:
@@ -108,6 +109,7 @@ def fractionalOperations(fractionals):
 
     print("Ответ: {} {}".format(intString, fractPart))
 
+
 # Задание-2:
 # Дана ведомость расчета заработной платы (файл "data/workers").
 # Рассчитайте зарплату всех работников, зная что они получат полный оклад,
@@ -116,6 +118,42 @@ def fractionalOperations(fractionals):
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
 
+Employer = namedtuple('Employer', 'name salary hourNorm hours')
+DIR = 'data'
+employersList = {}
+with open(os.path.join(DIR, 'workers'), 'r', encoding='UTF-8') as f:
+    for employerStr in f:
+        result = re.findall(r"[^\s]+", employerStr)
+        if result[0] == 'Имя':
+            continue
+        name = '{} {}'.format(result[0], result[1])
+        employersList[name] =  {
+            'salary': result[2],
+            'hourSalary': result[4],
+        }
+
+employers = []
+with open(os.path.join(DIR, 'hours_of'), 'r', encoding='UTF-8') as f:
+    for hoursOfStr in f:
+        result = re.findall(r"[^\s]+", hoursOfStr)
+        if result[0] == 'Имя':
+            continue
+        name = '{} {}'.format(result[0], result[1])
+        if employersList[name]:
+            employer = Employer(name, int(employersList[name]['salary']), int(employersList[name]['hourSalary']), int(result[2]))
+        employers.append(employer)
+
+for employer in employers:
+    currentSalary = 0
+    if employer.hours <= employer.hourNorm:
+        salaryPercent = employer.hours / employer.hourNorm
+        currentSalary = salaryPercent * employer.salary
+
+    elif employer.hours > employer.hourNorm:
+        salaryPercent = (employer.hours - employer.hourNorm) / employer.hourNorm
+        currentSalary = (salaryPercent * employer.salary * 2) + employer.salary
+
+    print('Зарплата {} = {}'.format(employer.name, int(currentSalary)))
 
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
