@@ -85,3 +85,28 @@ print('Дата корректна')
 #
 # Вход: 11
 # Выход: 5 3
+
+# 589
+# h - блок этаж
+# N = h^2
+
+# n = input("Введите номер комнаты: \n")
+n = 5
+
+preCountRoom = 0
+h = 1
+level = 0
+while True:
+    numRoom = h ** 2 + preCountRoom
+    print('h = {} level = {} numRoom = {}'.format(h, level, numRoom))
+    if numRoom >= n:
+        diffRoom = n - (numRoom - h ** 2)
+        curLvl = (diffRoom // h) + (numRoom - h ** 2)
+        offset = diffRoom % h
+        print(curLvl)
+        print(offset)
+
+        break
+    level += h
+    preCountRoom = numRoom
+    h += 1
