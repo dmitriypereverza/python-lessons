@@ -28,21 +28,21 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO' \
 
 print(bColors.bold("\nПервое задание"))
 
-def getMatchesFirstTask(line):
+def get_matches_first_task(line):
     """
-    >>> getMatchesFirstTask('sGAMkgAYEOmHBSQsSUHKvS')
+    >>> get_matches_first_task('sGAMkgAYEOmHBSQsSUHKvS')
     ['s', 'kg', 'm', 's', 'v']
-    >>> getMatchesFirstTask('mtMmEZUOmcqWiryMQhhTxqKdSTKCYE')
+    >>> get_matches_first_task('mtMmEZUOmcqWiryMQhhTxqKdSTKCYE')
     ['mt', 'm', 'mcq', 'iry', 'hh', 'xq', 'd']
     """
     resultList = re.findall(r"((?<=[A-Z])|^)([a-z]+)((?=[A-Z]{1,})|$)", line)
     return list(map(lambda x: x[1], resultList))
 
-def getMatchesFirstTaskWithOutRe(line):
+def get_matches_first_task_without_re(line):
     """
-    >>> getMatchesFirstTaskWithOutRe('sGAMkgAYEOmHBSQsSUHKvS')
+    >>> get_matches_first_task_without_re('sGAMkgAYEOmHBSQsSUHKvS')
     ['s', 'kg', 'm', 's', 'v']
-    >>> getMatchesFirstTaskWithOutRe('mtMmEZUOmcqWiryMQhhTxqKdSTKCYE')
+    >>> get_matches_first_task_without_re('mtMmEZUOmcqWiryMQhhTxqKdSTKCYE')
     ['mt', 'm', 'mcq', 'iry', 'hh', 'xq', 'd']
     """
     resultList = []
@@ -58,8 +58,8 @@ def getMatchesFirstTaskWithOutRe(line):
 
 result = re.sub(r"((?<=[A-Z])|^)([a-z]+)((?=[A-Z]{1,})|$)", bColors.green(r"\2"), line)
 print("Строка с выделениями: {}".format(result))
-print("Способ c re:\t {}".format(getMatchesFirstTask(line)))
-print("Способ без re:\t {}".format(getMatchesFirstTaskWithOutRe(line)))
+print("Способ c re:\t {}".format(get_matches_first_task(line)))
+print("Способ без re:\t {}".format(get_matches_first_task_without_re(line)))
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -87,25 +87,25 @@ line_2 = 'mcqWiryMQhhTUZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxU
 
 print(bColors.bold("\nВторое задание"))
 
-def getMatchesSecondTask(line):
+def get_matches_second_task(line):
     """
-    >>> getMatchesSecondTask('mcqWiryMQhhTUZUOmcqWiryMQhhTxqKdSTKCYEJlE')
+    >>> get_matches_second_task('mcqWiryMQhhTUZUOmcqWiryMQhhTxqKdSTKCYEJlE')
     ['TUZ']
-    >>> getMatchesSecondTask('AMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMu')
+    >>> get_matches_second_task('AMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMu')
     ['AY', 'NOGI']
-    >>> getMatchesSecondTask('GAMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLec')
+    >>> get_matches_second_task('GAMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLec')
     ['AY', 'NOGI', 'P']
     """
     resultList = re.findall(r"(?<=[a-z]{2})([A-Z]+)(?=[A-Z]{2})", line)
     return list(map(lambda x: x, resultList))
 
-def getMatchesSecondTaskWithoutRe(line):
+def get_matches_second_task_without_re(line):
     """
-    >>> getMatchesSecondTask('mcqWiryMQhhTUZUOmcqWiryMQhhTxqKdSTKCYEJlE')
+    >>> get_matches_second_task_without_re('mcqWiryMQhhTUZUOmcqWiryMQhhTxqKdSTKCYEJlE')
     ['TUZ']
-    >>> getMatchesSecondTask('AMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMu')
+    >>> get_matches_second_task_without_re('AMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMu')
     ['AY', 'NOGI']
-    >>> getMatchesSecondTask('GAMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLec')
+    >>> get_matches_second_task_without_re('GAMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLec')
     ['AY', 'NOGI', 'P']
     """
     resultList = []
@@ -132,8 +132,8 @@ def getMatchesSecondTaskWithoutRe(line):
 
 result = re.sub(r"(?<=[a-z]{2})([A-Z]+)(?=[A-Z]{2})", bColors.green(r"\1"), line_2)
 print("Строка с выделениями: {}".format(result))
-print("Способ c re:\t {}".format(getMatchesSecondTask(line_2)))
-print("Способ без re:\t {}".format(getMatchesSecondTaskWithoutRe(line_2)))
+print("Способ c re:\t {}".format(get_matches_second_task(line_2)))
+print("Способ без re:\t {}".format(get_matches_second_task_without_re(line_2)))
 
 
 # Задание-3:
@@ -145,13 +145,13 @@ print("Способ без re:\t {}".format(getMatchesSecondTaskWithoutRe(line_2
 
 print(bColors.bold("\nТретье задание"))
 
-def getLongSeq(long_string_num):
+def get_long_seq(long_string_num):
     """
-    >>> getLongSeq('33456564511153564')
+    >>> get_long_seq('33456564511153564')
     '111'
-    >>> getLongSeq('3345656451115399994')
+    >>> get_long_seq('3345656451115399994')
     '9999'
-    >>> getLongSeq('3345656000004511153564')
+    >>> get_long_seq('3345656000004511153564')
     '00000'
     """
     digitsSeq = ['?']
@@ -167,7 +167,7 @@ with open(file, 'w', encoding='utf-8') as f:
     f.write(num)
 with open(file, 'r', encoding='utf-8') as f:
     longNumber = f.readline()
-print('Самое длинное число в файле {}: {}'.format(file, getLongSeq(longNumber)))
+print('Самое длинное число в файле {}: {}'.format(file, get_long_seq(longNumber)))
 
 if __name__ == "__main__":
     import doctest

@@ -17,10 +17,10 @@ matrix = [[1, 0, 8],
 #                  [8, 1, 2]]
 # Суть сложности hard: Решите задачу в одну строку
 
-def rotateMatrixInOneLine(matrix):
+def rotate_matrix_in_one_line(matrix):
     """
     Поворот (транспонирование) матрицы
-    >>> rotateMatrixInOneLine([[1, 0, 8],[3, 4, 1],[0, 4, 2]])
+    >>> rotate_matrix_in_one_line([[1, 0, 8],[3, 4, 1],[0, 4, 2]])
     [[1, 3, 0], [0, 4, 4], [8, 1, 2]]
     """
     return [list(x) for x in list(zip(*matrix))]
@@ -28,7 +28,7 @@ def rotateMatrixInOneLine(matrix):
 
 print(bColors.bold('Первое задание.'))
 print('Дана матрица: {}'.format(''.join(["\n" + str(x) for x in matrix])))
-print('Матрица после поворота: {}'.format(''.join(["\n" + str(x) for x in rotateMatrixInOneLine(matrix)])))
+print('Матрица после поворота: {}'.format(''.join(["\n" + str(x) for x in rotate_matrix_in_one_line(matrix)])))
 
 # Задание-2:
 # Найдите наибольшее произведение пяти последовательных цифр в 1000-значном числе.
@@ -58,15 +58,15 @@ number = """
 
 print(bColors.bold("\nВторое задание."))
 
-def productNumbers(number_str):
+def get_product_numbers(number_str):
     """
-    >>> productNumbers('99879')
+    >>> get_product_numbers('99879')
     40824
-    >>> productNumbers('76689')
+    >>> get_product_numbers('76689')
     18144
-    >>> productNumbers('73167')
+    >>> get_product_numbers('73167')
     882
-    >>> productNumbers('09999')
+    >>> get_product_numbers('09999')
     0
     """
     result = 1
@@ -76,11 +76,11 @@ def productNumbers(number_str):
     return result
 
 
-def getMaxProductSeq(number):
+def get_max_product_seq(number):
     """
-    >>> getMaxProductSeq('352411998792312')
+    >>> get_max_product_seq('352411998792312')
     {'index': 6, 'seq': '99879', 'product': 40824}
-    >>> getMaxProductSeq('49698123213')
+    >>> get_max_product_seq('49698123213')
     {'index': 0, 'seq': '49698', 'product': 15552}
     """
     number = number.replace("\n", "")
@@ -91,7 +91,7 @@ def getMaxProductSeq(number):
     }
     for x in range(len(number) - 5):
         curNumber = number[x:x + 5]
-        prodNum = productNumbers(curNumber)
+        prodNum = get_product_numbers(curNumber)
         if prodNum > result_info['product']:
             result_info['index'] = x
             result_info['seq'] = curNumber
@@ -99,7 +99,7 @@ def getMaxProductSeq(number):
     return result_info
 
 
-print('Максимальное число = {}'.format(getMaxProductSeq(number)))
+print('Максимальное число = {}'.format(get_max_product_seq(number)))
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
