@@ -1,5 +1,7 @@
 __author__ = 'Переверза Дмитрий Витальевич'
 
+from utils.console import bColors
+
 # Задание-1:
 # Матрицы в питоне реализуются в виде вложенных списков:
 # Пример. Дано:
@@ -24,7 +26,7 @@ def rotateMatrixInOneLine(matrix):
     return [list(x) for x in list(zip(*matrix))]
 
 
-print('Первое задание.')
+print(bColors.bold('Первое задание.'))
 print('Дана матрица: {}'.format(''.join(["\n" + str(x) for x in matrix])))
 print('Матрица после поворота: {}'.format(''.join(["\n" + str(x) for x in rotateMatrixInOneLine(matrix)])))
 
@@ -54,7 +56,7 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
-print("\nВторое задание.")
+print(bColors.bold("\nВторое задание."))
 
 def productNumbers(number_str):
     """
